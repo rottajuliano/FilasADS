@@ -14,7 +14,7 @@ public class Main
 	public static float tempoMinAtendimento = 3;
 	public static float tempoMaxAtendimento = 5;
 	
-	public static float tempoMaxSimulacao = 100;
+	public static float tempoMaxSimulacao = 1000;
 	public static float tempoAtualSimulacao = 0;
 	public static ArrayList<Float> tempoNaFila = new ArrayList<Float>(capacidadeMax+1);
 	
@@ -29,8 +29,8 @@ public class Main
 				tempoMaxChegada, tempoMinAtendimento, tempoMaxAtendimento);
 		Escalonador escalonador = new Escalonador(fila);
 		
-		String format = "%-8s %-12s %-10s\n";
-		System.out.printf(format, "Evento", "Tempo Global", "Tempo com 0.." + fila.capacidadeMax + " pessoas na fila");
+		String format = "%-8s %-10s %-12s %-10s\n";
+		System.out.printf(format, "Evento", "# na fila",  "Tempo Global", "Tempo com 0.." + fila.capacidadeMax + " pessoas na fila");
 		while(tempoAtualSimulacao < tempoMaxSimulacao)
 		{
 			if(escalonador.queue.size() == 0)
@@ -53,8 +53,14 @@ public class Main
 					{
 						escalonador.agendaSaida(e.tempo);
 					}
-					escalonador.agendaChegada(e.tempo);
+					
+					tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
+					System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
+				} else {
+					//vamos apagar isso dps né?
+					System.out.println("Chegou com fila cheia.");
 				}
+				escalonador.agendaChegada(e.tempo);
 			}
 			else
 			{
@@ -63,9 +69,10 @@ public class Main
 				{
 					escalonador.agendaSaida(e.tempo);
 				}
+				
+				tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
+				System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 			}
-			tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
-			System.out.printf(format, e.tipo, tempoAtualSimulacao, tempoNaFila);
 		}
 		System.out.println("Fim da simulacao.");
 		
