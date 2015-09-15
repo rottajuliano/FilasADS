@@ -16,12 +16,12 @@ public class Main
 	
 	public static float tempoMaxSimulacao = 100;
 	public static float tempoAtualSimulacao = 0;
-	public static ArrayList<Integer> tempoNaFila = new ArrayList<Integer>(capacidadeMax);
+	public static ArrayList<Integer> tempoNaFila = new ArrayList<Integer>(capacidadeMax+1);
 	
 	public static void main(String[] args)
 	{
 		//inicializa o array de pessoas na fila
-		for (int i=0; i < capacidadeMax; i++) {
+		for (int i=0; i <= capacidadeMax; i++) {
 			tempoNaFila.add(0);
 		}
 		
@@ -29,6 +29,8 @@ public class Main
 				tempoMaxChegada, tempoMinAtendimento, tempoMaxAtendimento);
 		Escalonador escalonador = new Escalonador(fila);
 		
+		String format = "%-8s %-12s %-10s\n";
+		System.out.printf(format, "Evento", "Tempo Global", "Tempo com 0.." + fila.capacidadeMax + " pessoas na fila");
 		while(tempoAtualSimulacao < tempoMaxSimulacao)
 		{
 			if(escalonador.queue.size() == 0)
@@ -39,8 +41,7 @@ public class Main
 			
 			Evento e = escalonador.queue.poll();
 			tempoAtualSimulacao = e.tempo;
-			System.out.println(e + " - tempo atual: " + tempoAtualSimulacao +
-			"\t" + tempoNaFila);
+			System.out.printf(format, e.tipo, tempoAtualSimulacao, tempoNaFila);
 			if(e.tipo == TipoEvento.CHEGADA)
 			{
 				if(fila.numClientes < fila.capacidadeMax)
