@@ -9,7 +9,6 @@ public class Escalonador {
 	public PriorityQueue<Evento> queue;
 	
 	private Fila fila;
-	private float tempoEventoAnterior;
 	
 	public Escalonador(Fila fila)
 	{
@@ -32,8 +31,6 @@ public class Escalonador {
 		queue.add(new Evento(TipoEvento.SAIDA, tempoEventoAnterior + 
 				getRandomFloat(fila.tempoMinAtendimento,fila.tempoMaxAtendimento)));
 	}
-	
-	
 	
 	public float getRandomFloat(float min, float max)
 	{
