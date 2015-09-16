@@ -14,7 +14,7 @@ public class Main
 	public static float tempoMinAtendimento = 3;
 	public static float tempoMaxAtendimento = 5;
 	
-	public static float tempoMaxSimulacao = 1000;
+	public static float tempoMaxSimulacao = 30;
 	public static float tempoAtualSimulacao = 0;
 	public static ArrayList<Float> tempoNaFila = new ArrayList<Float>(capacidadeMax+1);
 	
@@ -43,6 +43,7 @@ public class Main
 			float tempoNoEventoAnterior = tempoAtualSimulacao;
 			int clientesNoEventoAnterior = fila.numClientes;
 			tempoAtualSimulacao = e.tempo;
+			tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
 			
 			if(e.tipo == TipoEvento.CHEGADA)
 			{
@@ -53,10 +54,10 @@ public class Main
 					{
 						escalonador.agendaSaida(e.tempo);
 					}
-					
-					tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
 					System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
-				} else {
+				}
+				else
+				{
 					//vamos apagar isso dps né?
 					System.out.println("Chegou com fila cheia.");
 				}
@@ -69,8 +70,6 @@ public class Main
 				{
 					escalonador.agendaSaida(e.tempo);
 				}
-				
-				tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
 				System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 			}
 		}
