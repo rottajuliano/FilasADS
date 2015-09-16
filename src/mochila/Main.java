@@ -6,15 +6,15 @@ public class Main
 {
 	
 	public static int capacidadeMax = 5;
-	public static int numServidores = 1;
+	public static int numServidores = 2;
 	
 	public static float tempoMinChegada = 2;
 	public static float tempoMaxChegada = 3;
 	
 	public static float tempoMinAtendimento = 3;
-	public static float tempoMaxAtendimento = 5;
+	public static float tempoMaxAtendimento = 10;
 	
-	public static float tempoMaxSimulacao = 30;
+	public static float tempoMaxSimulacao = 500;
 	public static float tempoAtualSimulacao = 0;
 	public static ArrayList<Float> tempoNaFila = new ArrayList<Float>(capacidadeMax+1);
 	
@@ -40,6 +40,7 @@ public class Main
 			}
 			
 			Evento e = escalonador.queue.poll();
+			//if (e.tempo > tempoMaxSimulacao) break;
 			float tempoNoEventoAnterior = tempoAtualSimulacao;
 			int clientesNoEventoAnterior = fila.numClientes;
 			tempoAtualSimulacao = e.tempo;
@@ -73,8 +74,38 @@ public class Main
 				System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 			}
 		}
-		System.out.println("Fim da simulacao.");
+		System.out.println("Fim da simulacao.\n");
 		
+		//calcula probabilidades marginais
+		for (int i=0; i <= capacidadeMax; i++) {
+			tempoNaFila.set(i, tempoNaFila.get(i)/tempoAtualSimulacao);
+			System.out.println(tempoNaFila.get(i));
+		}
+		
+		//calculo da vazão média
+		float vazaoMedia = 0;
+		float tempoMedioAtendimento = (tempoMaxAtendimento + tempoMinAtendimento) / 2;
+		for (int i=0; i <= capacidadeMax; i++) {
+			vazaoMedia += tempoNaFila.get(i) * (Math.min(tempoNaFila.get(i), numServidores) / tempoMedioAtendimento);
+		}
+		
+		
+		//calculo da utilização média
+		float utilizacaoMedia = 0;
+		for (int i=0; i <= capacidadeMax; i++) {
+			utilizacaoMedia += tempoNaFila.get(i) * (Math.min(tempoNaFila.get(i), numServidores) / numServidores);
+		}
+		
+		//calculo da população média
+		float populacaoMedia = 0;
+		for (int i=0; i <= capacidadeMax; i++) {
+			populacaoMedia += tempoNaFila.get(i) * i;
+		}
+		
+		System.out.println("Vazão média: " + vazaoMedia);
+		System.out.println("Utilização média: " + utilizacaoMedia);
+		System.out.println("População média: " + populacaoMedia);
+		System.out.println("Tempo médio de resposta: ");
 		
 	}
 
