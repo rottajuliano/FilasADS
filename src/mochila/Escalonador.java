@@ -10,14 +10,18 @@ public class Escalonador {
 	
 	private Fila fila;
 	
-	public Escalonador(Fila fila)
+	public Escalonador(Fila fila, long seed)
 	{
-		//this.rng = new Random(System.currentTimeMillis());
-		this.rng = new Random(1000);
+		this.rng = new Random(seed);
 		this.queue = new PriorityQueue<Evento>(10, new TimeComparator());
 		this.fila = fila;
 		
 		agendaChegada(0);
+	}
+	
+	public Escalonador(Fila fila)
+	{
+		this(fila, (long)1000);
 	}
 	
 	public void agendaChegada(float tempoEventoAnterior)

@@ -40,7 +40,6 @@ public class Main
 			}
 			
 			Evento e = escalonador.queue.poll();
-			//if (e.tempo > tempoMaxSimulacao) break;
 			float tempoNoEventoAnterior = tempoAtualSimulacao;
 			int clientesNoEventoAnterior = fila.numClientes;
 			tempoAtualSimulacao = e.tempo;
@@ -77,9 +76,10 @@ public class Main
 		System.out.println("Fim da simulacao.\n");
 		
 		//calcula probabilidades marginais
+		System.out.println("Probabilidades marginais:");
 		for (int i=0; i <= capacidadeMax; i++) {
 			tempoNaFila.set(i, tempoNaFila.get(i)/tempoAtualSimulacao);
-			System.out.println(tempoNaFila.get(i));
+			System.out.println("Estado " + i + ": " + tempoNaFila.get(i));
 		}
 		
 		//calculo da vazão média
@@ -102,10 +102,10 @@ public class Main
 			populacaoMedia += tempoNaFila.get(i) * i;
 		}
 		
-		System.out.println("Vazão média: " + vazaoMedia);
-		System.out.println("Utilização média: " + utilizacaoMedia);
-		System.out.println("População média: " + populacaoMedia);
-		System.out.println("Tempo médio de resposta: ");
+		System.out.println("Vazao media: " + vazaoMedia);
+		System.out.println("Utilizacao media: " + utilizacaoMedia);
+		System.out.println("Populacao media: " + populacaoMedia);
+		System.out.println("Tempo medio de resposta: ");
 		
 	}
 

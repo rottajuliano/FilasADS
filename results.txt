@@ -1,0 +1,6 @@
+Clientes perdidos: 12
+Probabilidades marginais: [0.026759805, 0.040641807, 0.03592787, 0.046525057, 0.30093986, 0.5492056]
+Populacao media: 4.20186
+Utilizacao media: 0.39801484
+Vazao media: 0.09950371
+
