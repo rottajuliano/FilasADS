@@ -47,6 +47,7 @@ public class GUI {
 		results += "Populacao media: " + simulador.getPopulacaoMedia() + "\n";
 		results += "Utilizacao media: " + simulador.getUtilizacaoMedia() + "\n";
 		results += "Vazao media: " + simulador.getVazaoMedia() + "\n";
+		results += "Tempo de resposta medio: " + simulador.getTempoRespostaMedio() + "\n";
 		try {
 			PrintWriter out = new PrintWriter(fileName);
 			out.println(results);
@@ -174,6 +175,7 @@ public class GUI {
 		JButton btnSimular = new JButton("Simular");
 		btnSimular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				int cap = Integer.parseInt(tfCapacidade.getText());
 				int nServ = Integer.parseInt(tfNumServidores.getText());
 				float chegadaMin = Float.parseFloat(tfChegadaMin.getText());
@@ -188,7 +190,7 @@ public class GUI {
 				simulador.simular();
 				if(checkBoxGerarLogs.isSelected()) writeLogToFile("log.txt");
 				writeResultsToFile("results.txt");
-				infoBox("Os resultados e logs foram salvos\n em arquivos de texto.", "Simulacão bem sucedida!");
+				infoBox("Os resultados e logs foram salvos em arquivos de texto\n no diretório de execução do programa.", "Simulacão bem sucedida!");
 				
 			}
 		});

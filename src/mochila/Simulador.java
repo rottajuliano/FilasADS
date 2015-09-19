@@ -141,4 +141,9 @@ public class Simulador {
 		return populacaoMedia;
 	}
 	
+	public float getTempoRespostaMedio()
+	{
+		return getPopulacaoMedia() / getVazaoMedia();
+	}
+	
 }

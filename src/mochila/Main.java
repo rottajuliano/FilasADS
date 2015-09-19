@@ -1,9 +1,9 @@
 package mochila;
 
-import java.util.ArrayList;
-
 public class Main
 {
+	private static float tempoSimulacao = 1000;
+	private static long seed = 1000;
 	
 	public static int capacidadeMax = 5;
 	public static int numServidores = 2;
@@ -12,100 +12,20 @@ public class Main
 	public static float tempoMaxChegada = 3;
 	
 	public static float tempoMinAtendimento = 3;
-	public static float tempoMaxAtendimento = 10;
-	
-	public static float tempoMaxSimulacao = 500;
-	public static float tempoAtualSimulacao = 0;
-	public static ArrayList<Float> tempoNaFila = new ArrayList<Float>(capacidadeMax+1);
+	public static float tempoMaxAtendimento = 5;
 	
 	public static void main(String[] args)
 	{
-		//inicializa o array de pessoas na fila
-		for (int i=0; i <= capacidadeMax; i++) {
-			tempoNaFila.add((float) 0);
-		}
-		
 		Fila fila = new Fila(capacidadeMax, numServidores, tempoMinChegada,
 				tempoMaxChegada, tempoMinAtendimento, tempoMaxAtendimento);
-		Escalonador escalonador = new Escalonador(fila);
 		
-		String format = "%-8s %-10s %-12s %-10s\n";
-		System.out.printf(format, "Evento", "# na fila",  "Tempo Global", "Tempo com 0.." + fila.capacidadeMax + " pessoas na fila");
-		while(tempoAtualSimulacao < tempoMaxSimulacao)
-		{
-			if(escalonador.queue.size() == 0)
-			{
-				System.out.println("Nao existem mais eventos a processar.");
-				break;
-			}
-			
-			Evento e = escalonador.queue.poll();
-			float tempoNoEventoAnterior = tempoAtualSimulacao;
-			int clientesNoEventoAnterior = fila.numClientes;
-			tempoAtualSimulacao = e.tempo;
-			tempoNaFila.set(clientesNoEventoAnterior, tempoNaFila.get(clientesNoEventoAnterior) + (tempoAtualSimulacao - tempoNoEventoAnterior));
-			
-			if(e.tipo == TipoEvento.CHEGADA)
-			{
-				if(fila.numClientes < fila.capacidadeMax)
-				{
-					fila.numClientes++;
-					if(fila.numClientes <= fila.numServidores)
-					{
-						escalonador.agendaSaida(e.tempo);
-					}
-					System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
-				}
-				else
-				{
-					//vamos apagar isso dps né?
-					System.out.println("Chegou com fila cheia.");
-				}
-				escalonador.agendaChegada(e.tempo);
-			}
-			else
-			{
-				fila.numClientes--;
-				if(fila.numClientes >= fila.numServidores)
-				{
-					escalonador.agendaSaida(e.tempo);
-				}
-				System.out.printf(format, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
-			}
-		}
-		System.out.println("Fim da simulacao.\n");
+		Simulador simulador = new Simulador(fila, tempoSimulacao, seed);
+		simulador.simular();
 		
-		//calcula probabilidades marginais
-		System.out.println("Probabilidades marginais:");
-		for (int i=0; i <= capacidadeMax; i++) {
-			tempoNaFila.set(i, tempoNaFila.get(i)/tempoAtualSimulacao);
-			System.out.println("Estado " + i + ": " + tempoNaFila.get(i));
-		}
-		
-		//calculo da vazão média
-		float vazaoMedia = 0;
-		float tempoMedioAtendimento = (tempoMaxAtendimento + tempoMinAtendimento) / 2;
-		for (int i=0; i <= capacidadeMax; i++) {
-			vazaoMedia += tempoNaFila.get(i) * (Math.min(tempoNaFila.get(i), numServidores) / tempoMedioAtendimento);
-		}
-		
-		
-		//calculo da utilização média
-		float utilizacaoMedia = 0;
-		for (int i=0; i <= capacidadeMax; i++) {
-			utilizacaoMedia += tempoNaFila.get(i) * (Math.min(tempoNaFila.get(i), numServidores) / numServidores);
-		}
-		
-		//calculo da população média
-		float populacaoMedia = 0;
-		for (int i=0; i <= capacidadeMax; i++) {
-			populacaoMedia += tempoNaFila.get(i) * i;
-		}
-		
-		System.out.println("Vazao media: " + vazaoMedia);
-		System.out.println("Utilizacao media: " + utilizacaoMedia);
-		System.out.println("Populacao media: " + populacaoMedia);
-		System.out.println("Tempo medio de resposta: ");
+		System.out.println("Vazao media: " + simulador.getVazaoMedia());
+		System.out.println("Utilizacao media: " + simulador.getUtilizacaoMedia());
+		System.out.println("Populacao media: " + simulador.getPopulacaoMedia());
+		System.out.println("Tempo medio de resposta: " + simulador.getTempoRespostaMedio());
 		
 	}
 
