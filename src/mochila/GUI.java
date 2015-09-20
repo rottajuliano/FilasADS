@@ -44,10 +44,10 @@ public class GUI {
 		String results = "";
 		results += "Clientes perdidos: " + simulador.getNumClientesPerdidos() + "\n";
 		results += "Probabilidades marginais: " + simulador.getProbabilidadesMarginais() + "\n";
-		results += "Populacao media: " + simulador.getPopulacaoMedia() + "\n";
-		results += "Utilizacao media: " + simulador.getUtilizacaoMedia() + "\n";
 		results += "Vazao media: " + simulador.getVazaoMedia() + "\n";
-		results += "Tempo de resposta medio: " + simulador.getTempoRespostaMedio() + "\n";
+		results += "Utilizacao media: " + simulador.getUtilizacaoMedia() + "\n";
+		results += "Populacao media: " + simulador.getPopulacaoMedia() + "\n";
+		results += "Tempo medio de resposta: " + simulador.getTempoRespostaMedio() + "\n";
 		try {
 			PrintWriter out = new PrintWriter(fileName);
 			out.println(results);
