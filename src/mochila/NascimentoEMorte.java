@@ -44,12 +44,48 @@ public class NascimentoEMorte {
 		
 	}
 	
-	public void printProbabilidades()
+	public ArrayList<Float> getProbabilidades() { return probabilidade; }
+	
+	public void printMetricas()
 	{
-		for(int i=0; i<probabilidade.size(); i++)
-		{
-			System.out.println("P" + i + ": " + probabilidade.get(i));
+		System.out.println("Probabilidades marginais: " + getProbabilidades());
+		System.out.println("Vazao media: " + getVazaoMedia());
+		System.out.println("Utilizacao media: " + getUtilizacaoMedia());
+		System.out.println("Populacao media: " + getPopulacaoMedia());
+		System.out.println("Tempo medio de resposta: " + getTempoRespostaMedio());
+	}
+	
+	public float getVazaoMedia()
+	{
+		float vazaoMedia = 0;
+		float tempoMedioAtendimento = (fila.tempoMaxAtendimento + fila.tempoMinAtendimento) / 2;
+		for (int i=0; i <= fila.capacidadeMax; i++) {
+			vazaoMedia += probabilidade.get(i) * (Math.min(probabilidade.get(i), fila.numServidores) / tempoMedioAtendimento);
 		}
+		return vazaoMedia;
+	}
+	
+	public float getUtilizacaoMedia()
+	{
+		float utilizacaoMedia = 0;
+		for (int i=0; i <= fila.capacidadeMax; i++) {
+			utilizacaoMedia += probabilidade.get(i) * (Math.min(probabilidade.get(i), fila.numServidores) / fila.numServidores);
+		}
+		return utilizacaoMedia;
+	}
+	
+	public float getPopulacaoMedia()
+	{
+		float populacaoMedia = 0;
+		for (int i=0; i <= fila.capacidadeMax; i++) {
+			populacaoMedia += probabilidade.get(i) * i;
+		}
+		return populacaoMedia;
+	}
+	
+	public float getTempoRespostaMedio()
+	{
+		return getPopulacaoMedia() / getVazaoMedia();
 	}
 
 }
