@@ -26,7 +26,7 @@ public class NascimentoEMorte {
 		{
 			lambda = (fila.tempoMinChegada + fila.tempoMaxChegada)/2.0f;
 			mu = (fila.tempoMinAtendimento + fila.tempoMaxAtendimento)/2.0f;
-			muI = mu * Math.min(i, mu);
+			muI = mu * Math.min(i, fila.numServidores);
 			p = probabilidade.get(i-1) * (lambda/muI);
 			probabilidade.set(i, p);
 		}
