@@ -29,6 +29,10 @@ public class Main
 		System.out.println("Populacao media: " + simulador.getPopulacaoMedia());
 		System.out.println("Tempo medio de resposta: " + simulador.getTempoRespostaMedio());
 		
+		NascimentoEMorte nm = new NascimentoEMorte(fila);
+		nm.calcular();
+		nm.printProbabilidades();
+		
 	}
 
 }

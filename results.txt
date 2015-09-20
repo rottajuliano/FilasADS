@@ -1,7 +1,7 @@
 Clientes perdidos: 0
-Probabilidades marginais: [0.0027090628, 0.41207838, 0.57931733, 0.0058953054, 0.0, 0.0]
-Populacao media: 1.5883989
-Utilizacao media: 0.25272962
-Vazao media: 0.12636481
-Tempo de resposta medio: 12.569946
+Probabilidades marginais: [1.08402426E-4, 0.40141183, 0.58839023, 0.010089557, 0.0, 0.0]
+Vazao media: 0.12685908
+Utilizacao media: 0.25371817
+Populacao media: 1.6084609
+Tempo medio de resposta: 12.679115
 
