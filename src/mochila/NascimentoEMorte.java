@@ -13,8 +13,8 @@ public class NascimentoEMorte {
 		
 		// O numero de estados no processo de nascimento e morte
 		// é igual ao numero de clientes no sistema, incluindo os em serviço
-		// Ou seja, o estado vazio + o tamanho da fila + o numero de servidores
-		int numStates = 1 + fila.capacidade + fila.numServidores;
+		// Ou seja, o estado vazio + o numero de servidores + o tamanho da fila
+		int numStates = 1 + fila.numServidores + fila.capacidade;
 		System.out.println(numStates);
 		
 		// Iniciando o vetor de probabilidades
@@ -44,12 +44,16 @@ public class NascimentoEMorte {
 			probabilidades.set(i,probabilidades.get(i)/somaProbabilidades);
 		}
 		
+		System.out.println(fila.lambdaAvg + " * " + probabilidades.get(probabilidades.size()-1));
+		System.out.println("Clientes perdidos = " + fila.lambdaAvg * probabilidades.get(probabilidades.size()-1));
+		
 	}
 	
 	public String getResults()
 	{
 		String results = "====================\n";
 		results += "RESULTADOS NASCIMENTO E MORTE:\n";
+		results += "Clientes perdidos: " + fila.lambdaAvg * probabilidades.get(probabilidades.size()-1) + "por u.t\n";
 		results += "Probabilidades marginais: " + probabilidades + "\n";
 		results += "Vazao media: " + Util.getVazaoMedia(probabilidades, fila) + "\n";
 		results += "Utilizacao media: " + Util.getUtilizacaoMedia(probabilidades, fila) + "\n";
