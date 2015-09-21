@@ -175,7 +175,7 @@ public class GUI {
 				nm.calcular();
 				
 				Util.writeResultsToFile(f, simulador, nm, "results.txt");
-				infoBox("Os resultados e log foram salvos em arquivos de texto\n no diretório de execução do programa.", "Simulacão bem sucedida!");
+				infoBox("Os resultados e log foram salvos em arquivos de texto\n no diretï¿½rio de execuï¿½ï¿½o do programa.", "Simulacï¿½o bem sucedida!");
 				
 			}
 		});

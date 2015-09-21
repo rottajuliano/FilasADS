@@ -11,33 +11,37 @@ public class NascimentoEMorte {
 	{
 		this.fila = fila;
 		
-		// Iniciando o vetor de probabilidades 
-		probabilidades = new ArrayList<Float>(fila.capacidade+1);
-		for (int i=0; i <= fila.capacidade; i++) probabilidades.add(0.0f);
+		// O numero de estados no processo de nascimento e morte
+		// é igual ao numero de clientes no sistema, incluindo os em serviço
+		// Ou seja, o estado vazio + o tamanho da fila + o numero de servidores
+		int numStates = 1 + fila.capacidade + fila.numServidores;
+		System.out.println(numStates);
+		
+		// Iniciando o vetor de probabilidades
+		probabilidades = new ArrayList<Float>();
+		for (int i=0; i < numStates; i++) probabilidades.add(0.0f);
+		// Peso do Estado 0 => 1
+		probabilidades.set(0, 1.0f);
 	}
 	
 	public void calcular()
 	{
 		float muI, p;
-		float somaProbabilidades = 0;
-		// Probabilidade do Estado 0 = 1
-		probabilidades.set(0, 1.0f);
-		for(int i=1; i<fila.capacidade; i++)
+		float somaProbabilidades = probabilidades.get(0);
+		for(int i=1; i<probabilidades.size(); i++)
 		{
 			muI = fila.muAvg * Math.min(i, fila.numServidores);
 			p = probabilidades.get(i-1) * (fila.lambdaAvg/muI);
 			probabilidades.set(i, p);
-		}
-		
-		// Soma das probabilidades
-		for(int i=0; i<probabilidades.size(); i++)
-		{
-			somaProbabilidades += probabilidades.get(i);			
+			
+			// Soma das probabilidades
+			somaProbabilidades += probabilidades.get(i);
+			
 		}
 		// Normalizacao
 		for(int i=0; i<probabilidades.size(); i++)
 		{
-			probabilidades.set(i,probabilidades.get(i)/somaProbabilidades);			
+			probabilidades.set(i,probabilidades.get(i)/somaProbabilidades);
 		}
 		
 	}

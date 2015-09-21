@@ -1,41 +1,41 @@
 ====================
 PARAMETROS DA FILA:
-Lambda Mínimo: 0.5
-Lambda Máximo: 0.33333334
-Lambda Médio: 0.4166667
+Lambda Mï¿½nimo: 1.5151515
+Lambda Mï¿½ximo: 1.5151515
+Lambda Mï¿½dio: 1.5151515
 
-Mu Mínimo: 0.33333334
-Mu Máximo: 0.2
-Mu Médio: 0.26666668
+Mu Mï¿½nimo: 1.5151515
+Mu Mï¿½ximo: 1.5151515
+Mu Mï¿½dio: 1.5151515
 
-Tempo de Chegada Mínimo: 2.0
-Tempo de Chegada Máximo: 3.0
-Tempo de Chegada Médio: 2.3999999
+Tempo de Chegada Mï¿½nimo: 0.66
+Tempo de Chegada Mï¿½ximo: 0.66
+Tempo de Chegada Mï¿½dio: 0.66
 
-Tempo de Atendimento Mínimo: 3.0
-Tempo de Atendimento Máximo: 5.0
-Tempo de Atendimento Médio: 3.7499998
+Tempo de Atendimento Mï¿½nimo: 0.66
+Tempo de Atendimento Mï¿½ximo: 0.66
+Tempo de Atendimento Mï¿½dio: 0.66
 
-Capacidade: 5
-Número de servidores: 2
+Capacidade: 3
+Nï¿½mero de servidores: 2
 ====================
 
 ====================
 RESULTADOS SIMULADOR:
 Clientes perdidos: 0
-Probabilidades marginais: [2.7099176E-4, 0.4054825, 0.5854703, 0.008776233, 0.0, 0.0]
-Vazao media: 0.13527164
-Utilizacao media: 0.25363433
-Populacao media: 1.6027519
-Tempo medio de resposta: 11.848395
+Probabilidades marginais: [6.596421E-4, 0.99934036, 0.0, 0.0]
+Vazao media: 1.5131539
+Utilizacao media: 0.49934077
+Populacao media: 0.99934036
+Tempo medio de resposta: 0.6604354
 ====================
 
 ====================
 RESULTADOS NASCIMENTO E MORTE:
-Probabilidades marginais: [0.18241732, 0.28502706, 0.2226774, 0.17396672, 0.1359115, 0.0]
-Vazao media: 0.056756824
-Utilizacao media: 0.10641904
-Populacao media: 1.795928
-Tempo medio de resposta: 31.642504
+Probabilidades marginais: [0.34042552, 0.34042552, 0.17021276, 0.08510638, 0.04255319, 0.021276595]
+Vazao media: 0.40605232
+Utilizacao media: 0.13399728
+Populacao media: 0.9361702
+Tempo medio de resposta: 2.3055408
 ====================
 
