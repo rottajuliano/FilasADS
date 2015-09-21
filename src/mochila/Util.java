@@ -20,9 +20,12 @@ public class Util {
 	
 	// Escreve em um arquivo as estatisticas obtidas
 	// atraves de um simulador e um processo de nascimento e morte	
-	public static void writeResultsToFile(Simulador simulador, NascimentoEMorte nm, String fileName)
+	public static void writeResultsToFile(Fila fila, Simulador simulador, NascimentoEMorte nm, String fileName)
 	{
-		String results = simulador.getResults();
+		String results = "";
+		results += fila;
+		results += "\n";
+		results += simulador.getResults();
 		results += "\n";
 		results += nm.getResults();
 		

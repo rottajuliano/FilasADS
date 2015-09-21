@@ -50,5 +50,31 @@ public class Fila
 		
 		this.numClientes = 0;
 	}
+	
+	public String toString()
+	{
+		String results = "====================\n";
+		results += "PARAMETROS DA FILA:\n";
+		results += "Lambda Mínimo: " + lambdaMin + "\n";
+		results += "Lambda Máximo: " + lambdaMax + "\n";
+		results += "Lambda Médio: " + lambdaAvg + "\n\n";
+		
+		results += "Mu Mínimo: " + muMin + "\n";
+		results += "Mu Máximo: " + muMax + "\n";
+		results += "Mu Médio: " + muAvg + "\n\n";
+		
+		results += "Tempo de Chegada Mínimo: " + tempoChegadaMin + "\n";
+		results += "Tempo de Chegada Máximo: " + tempoChegadaMax + "\n";
+		results += "Tempo de Chegada Médio: " + tempoChegadaAvg + "\n\n";
+		
+		results += "Tempo de Atendimento Mínimo: " + tempoAtendimentoMin + "\n";
+		results += "Tempo de Atendimento Máximo: " + tempoAtendimentoMax + "\n";
+		results += "Tempo de Atendimento Médio: " + tempoAtendimentoAvg + "\n\n";
+		
+		results += "Capacidade: " + capacidade + "\n";
+		results += "Número de servidores: " + numServidores + "\n";
+		results += "====================\n";
+		return results;
+	}
 
 }

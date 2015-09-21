@@ -71,7 +71,6 @@ public class Simulador {
 						// (ou seja, cliente vai ser atendido agora)
 						escalonador.agendaSaida(e.tempo);
 					}
-					log += String.format(logFormat, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 				}
 				// A fila esta cheia
 				else
@@ -79,7 +78,6 @@ public class Simulador {
 					// Atualizar o numero de clientes perdidos
 					clientesPerdidos++;
 					log += "Chegou com fila cheia.\n";
-					log += String.format(logFormat, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 				}
 				// Agendar uma chegada nova
 				escalonador.agendaChegada(e.tempo);
@@ -95,8 +93,9 @@ public class Simulador {
 					// Agendar uma nova saida
 					escalonador.agendaSaida(e.tempo);
 				}
-				log += String.format(logFormat, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 			}
+			// Adicionar o evento ao log
+			log += String.format(logFormat, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 		}
 		// Atualizar o vetor de probabilidades marginais
 		for (int i=0; i <= fila.capacidade; i++) {

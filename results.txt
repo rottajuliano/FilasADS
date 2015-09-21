@@ -1,19 +1,41 @@
 ====================
+PARAMETROS DA FILA:
+Lambda Mínimo: 0.5
+Lambda Máximo: 0.33333334
+Lambda Médio: 0.4166667
+
+Mu Mínimo: 0.33333334
+Mu Máximo: 0.2
+Mu Médio: 0.26666668
+
+Tempo de Chegada Mínimo: 2.0
+Tempo de Chegada Máximo: 3.0
+Tempo de Chegada Médio: 2.3999999
+
+Tempo de Atendimento Mínimo: 3.0
+Tempo de Atendimento Máximo: 5.0
+Tempo de Atendimento Médio: 3.7499998
+
+Capacidade: 5
+Número de servidores: 2
+====================
+
+====================
 RESULTADOS SIMULADOR:
 Clientes perdidos: 0
-Probabilidades marginais: [5.0E-4, 0.9995, 0.0, 0.0, 0.0, 0.0]
-Vazao media: 1.9980009
-Utilizacao media: 0.49950022
-Populacao media: 0.9995
-Tempo medio de resposta: 0.50025004
+Probabilidades marginais: [2.7099176E-4, 0.4054825, 0.5854703, 0.008776233, 0.0, 0.0]
+Vazao media: 0.13527164
+Utilizacao media: 0.25363433
+Populacao media: 1.6027519
+Tempo medio de resposta: 11.848395
 ====================
 
 ====================
 RESULTADOS NASCIMENTO E MORTE:
-Probabilidades marginais: [0.3478261, 0.3478261, 0.17391305, 0.08695652, 0.04347826, 0.0]
-Vazao media: 0.5633271
-Utilizacao media: 0.14083177
-Populacao media: 1.1304348
-Tempo medio de resposta: 2.0067112
+Probabilidades marginais: [0.18241732, 0.28502706, 0.2226774, 0.17396672, 0.1359115, 0.0]
+Vazao media: 0.056756824
+Utilizacao media: 0.10641904
+Populacao media: 1.795928
+Tempo medio de resposta: 31.642504
 ====================
 

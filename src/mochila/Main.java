@@ -2,26 +2,27 @@ package mochila;
 
 public class Main
 {	
-	public static float lambdaMin = 2;
-	public static float lambdaMax = 2;
+	public static float tempoChegadaMin = 2;
+	public static float tempoChegadaMax = 3;
+	public static float tempoChegadaAvg = (tempoChegadaMin + tempoChegadaMax)/2.0f;
+	
+	public static float tempoAtendimentoMin = 3;
+	public static float tempoAtendimentoMax = 5;
+	public static float tempoAtendimentoAvg = (tempoAtendimentoMin + tempoAtendimentoMax)/2.0f;
+	
+	public static float lambdaMin = 1/tempoChegadaMin;
+	public static float lambdaMax = 1/tempoChegadaMax;
 	public static float lambdaAvg = (lambdaMin + lambdaMax)/2.0f;
 	
-	public static float muMin = 2;
-	public static float muMax = 2;
+	public static float muMin = 1/tempoAtendimentoMin;
+	public static float muMax = 1/tempoAtendimentoMax;
 	public static float muAvg = (muMin + muMax)/2.0f;
 	
-	public float tempoChegadaMin = 1.0f/lambdaMin;
-	public float tempoChegadaMax = 1.0f/lambdaMax;
-	public float tempoChegadaAvg = (tempoChegadaMin + tempoChegadaMax)/2.0f;
-	
-	public static float tempoAtendimentoMin = 1.0f/muMin;
-	public static float tempoAtendimentoMax = 1.0f/muMax;
-	public float tempoAtendimentoAvg = (tempoAtendimentoMin + tempoAtendimentoMax)/2.0f;
 	
 	public static int capacidade = 5;
 	public static int numServidores = 2;
 	
-	public static float tempoSimulacao = 1000;
+	public static float tempoSimulacao = 10000;
 	public static long seed = 1000;
 	
 	public static Simulador simulador;
@@ -33,6 +34,8 @@ public class Main
 		
 		// Criar uma fila
 		Fila fila = new Fila(lambdaMin, lambdaMax, muMin, muMax, capacidade, numServidores);
+		// Imprimir parametros da fila
+		System.out.println(fila);
 		
 		// Criar um simulador
 		simulador = new Simulador(fila, tempoSimulacao, seed);
@@ -51,7 +54,7 @@ public class Main
 		// Escrever em um arquivo a tabela de eventos do simulador
 		Util.writeStringToFile(simulador.log, "log.txt");
 		// Escrever em um arquivo os resultados obtidos na simulacao e no processo de nascimento e morte
-		Util.writeResultsToFile(simulador, nm, "results.txt");
+		Util.writeResultsToFile(fila, simulador, nm, "results.txt");
 		
 	}
 

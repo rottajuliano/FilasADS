@@ -73,19 +73,19 @@ public class GUI {
 		labelCapacidadeMaxima.setBounds(10, 73, 192, 14);
 		frmEventbasedSimulator.getContentPane().add(labelCapacidadeMaxima);
 		
-		JLabel labelTaxasDeChegada = new JLabel("Taxas de chegada (\u03BB) por u.t:");
-		labelTaxasDeChegada.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelTaxasDeChegada.setBounds(10, 11, 192, 14);
-		frmEventbasedSimulator.getContentPane().add(labelTaxasDeChegada);
+		JLabel labelTemposDeChegada = new JLabel("Tempo de chegada:");
+		labelTemposDeChegada.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelTemposDeChegada.setBounds(10, 11, 192, 14);
+		frmEventbasedSimulator.getContentPane().add(labelTemposDeChegada);
 		
 		JLabel labelAChegada = new JLabel("a");
 		labelAChegada.setBounds(264, 14, 14, 14);
 		frmEventbasedSimulator.getContentPane().add(labelAChegada);
 		
-		JLabel labelTemposDeSaida = new JLabel("Taxa de atendimento (\u03BC) por u.t:");
-		labelTemposDeSaida.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelTemposDeSaida.setBounds(10, 42, 192, 14);
-		frmEventbasedSimulator.getContentPane().add(labelTemposDeSaida);
+		JLabel labelTemposDeAtendimento = new JLabel("Tempo de atendimento:");
+		labelTemposDeAtendimento.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelTemposDeAtendimento.setBounds(10, 42, 192, 14);
+		frmEventbasedSimulator.getContentPane().add(labelTemposDeAtendimento);
 		
 		JLabel labelASaida = new JLabel("a");
 		labelASaida.setBounds(264, 45, 14, 14);
@@ -154,10 +154,10 @@ public class GUI {
 		btnSimular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				float lambdaMin = Float.parseFloat(tfLambdaMin.getText());
-				float lambdaMax = Float.parseFloat(tfLambdaMax.getText());
-				float muMin = Float.parseFloat(tfMuMin.getText());
-				float muMax = Float.parseFloat(tfMuMax.getText());
+				float chegadaMin = Float.parseFloat(tfLambdaMin.getText());
+				float chegadaMax = Float.parseFloat(tfLambdaMax.getText());
+				float atendimentoMin = Float.parseFloat(tfMuMin.getText());
+				float atendimentoMax = Float.parseFloat(tfMuMax.getText());
 				
 				int cap = Integer.parseInt(tfCapacidade.getText());
 				int nServ = Integer.parseInt(tfNumServidores.getText());
@@ -165,7 +165,7 @@ public class GUI {
 				float tempoSimulacao = Float.parseFloat(tfTempoDeSimulacao.getText());
 				long seed = Long.parseLong(tfSemente.getText());
 				
-				Fila f = new Fila(lambdaMin, lambdaMax, muMin, muMax, cap, nServ);
+				Fila f = new Fila(1/chegadaMin, 1/chegadaMax, 1/atendimentoMin, 1/atendimentoMax, cap, nServ);
 				
 				simulador = new Simulador(f, tempoSimulacao, seed);
 				simulador.simular();
@@ -174,7 +174,7 @@ public class GUI {
 				nm = new NascimentoEMorte(f);
 				nm.calcular();
 				
-				Util.writeResultsToFile(simulador, nm, "results.txt");
+				Util.writeResultsToFile(f, simulador, nm, "results.txt");
 				infoBox("Os resultados e log foram salvos em arquivos de texto\n no diretório de execução do programa.", "Simulacão bem sucedida!");
 				
 			}
