@@ -1,7 +1,19 @@
+====================
+RESULTADOS SIMULADOR:
 Clientes perdidos: 0
-Probabilidades marginais: [1.08402426E-4, 0.40141183, 0.58839023, 0.010089557, 0.0, 0.0]
-Vazao media: 0.12685908
-Utilizacao media: 0.25371817
-Populacao media: 1.6084609
-Tempo medio de resposta: 12.679115
+Probabilidades marginais: [5.0E-4, 0.9995, 0.0, 0.0, 0.0, 0.0]
+Vazao media: 1.9980009
+Utilizacao media: 0.49950022
+Populacao media: 0.9995
+Tempo medio de resposta: 0.50025004
+====================
+
+====================
+RESULTADOS NASCIMENTO E MORTE:
+Probabilidades marginais: [0.3478261, 0.3478261, 0.17391305, 0.08695652, 0.04347826, 0.0]
+Vazao media: 0.5633271
+Utilizacao media: 0.14083177
+Populacao media: 1.1304348
+Tempo medio de resposta: 2.0067112
+====================
 

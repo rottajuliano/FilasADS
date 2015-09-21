@@ -6,18 +6,17 @@ public class Simulador {
 	
 	private Escalonador escalonador;
 	
-	private Fila fila;
-	private ArrayList<Float> tempoNaFila;
-	private ArrayList<Float> probabilidadesMarginais;
+	public Fila fila;
+	public ArrayList<Float> tempoNaFila;
+	public ArrayList<Float> probabilidadesMarginais;
 	
 	private float tempoMaxSimulacao;
 	private float tempoAtualSimulacao;
 	
-	private int clientesPerdidos;
+	public int clientesPerdidos;
 	
-	private String log;
+	public String log;
 	private String logFormat = "%-8s %-10s %-12s %-10s\n";
-	
 	
 	
 	public Simulador(Fila fila, float tempoSimulacao, long seed)
@@ -29,18 +28,18 @@ public class Simulador {
 		this.log = "";
 		
 		// Inicializando o vetor de tempos
-		tempoNaFila = new ArrayList<Float>(fila.capacidadeMax+1);
-		for (int i=0; i <= fila.capacidadeMax; i++) tempoNaFila.add(0.0f);
+		tempoNaFila = new ArrayList<Float>(fila.capacidade+1);
+		for (int i=0; i <= fila.capacidade; i++) tempoNaFila.add(0.0f);
 		
 		// Iniciando o vetor de probabilidades marginais
-		probabilidadesMarginais = new ArrayList<Float>(fila.capacidadeMax+1);
-		for (int i=0; i <= fila.capacidadeMax; i++) probabilidadesMarginais.add(0.0f);
+		probabilidadesMarginais = new ArrayList<Float>(fila.capacidade+1);
+		for (int i=0; i <= fila.capacidade; i++) probabilidadesMarginais.add(0.0f);
 	}
 	
 	public void simular()
 	{
 		// Cabecalho do log
-		log += String.format(logFormat, "Evento", "# na fila",  "Tempo Global", "Tempo com 0.." + fila.capacidadeMax + " pessoas na fila");
+		log += String.format(logFormat, "Evento", "# na fila",  "Tempo Global", "Tempo com 0.." + fila.capacidade + " pessoas na fila");
 		
 		// Enquanto nao atingirmos o tempo solicitado de simulacao
 		while(tempoAtualSimulacao < tempoMaxSimulacao)
@@ -61,7 +60,7 @@ public class Simulador {
 			if(e.tipo == TipoEvento.CHEGADA)
 			{
 				// Caso a fila ainda nao esteja cheia
-				if(fila.numClientes < fila.capacidadeMax)
+				if(fila.numClientes < fila.capacidade)
 				{
 					// Adicionar um cliente na fila
 					fila.numClientes++;
@@ -80,6 +79,7 @@ public class Simulador {
 					// Atualizar o numero de clientes perdidos
 					clientesPerdidos++;
 					log += "Chegou com fila cheia.\n";
+					log += String.format(logFormat, e.tipo, fila.numClientes, tempoAtualSimulacao, tempoNaFila);
 				}
 				// Agendar uma chegada nova
 				escalonador.agendaChegada(e.tempo);
@@ -99,7 +99,7 @@ public class Simulador {
 			}
 		}
 		// Atualizar o vetor de probabilidades marginais
-		for (int i=0; i <= fila.capacidadeMax; i++) {
+		for (int i=0; i <= fila.capacidade; i++) {
 			probabilidadesMarginais.set(i, tempoNaFila.get(i)/tempoAtualSimulacao);
 		}
 		
@@ -107,43 +107,18 @@ public class Simulador {
 		log += "Fim da simulacao.\n";
 	}
 	
-	public String getLog() { return log; }
-	
-	public int getNumClientesPerdidos() { return clientesPerdidos; }
-	
-	public ArrayList<Float> getProbabilidadesMarginais() { return probabilidadesMarginais; }
-	
-	public float getVazaoMedia()
+	public String getResults()
 	{
-		float vazaoMedia = 0;
-		float tempoMedioAtendimento = (fila.tempoMaxAtendimento + fila.tempoMinAtendimento) / 2;
-		for (int i=0; i <= fila.capacidadeMax; i++) {
-			vazaoMedia += probabilidadesMarginais.get(i) * (Math.min(probabilidadesMarginais.get(i), fila.numServidores) / tempoMedioAtendimento);
-		}
-		return vazaoMedia;
-	}
-	
-	public float getUtilizacaoMedia()
-	{
-		float utilizacaoMedia = 0;
-		for (int i=0; i <= fila.capacidadeMax; i++) {
-			utilizacaoMedia += probabilidadesMarginais.get(i) * (Math.min(probabilidadesMarginais.get(i), fila.numServidores) / fila.numServidores);
-		}
-		return utilizacaoMedia;
-	}
-	
-	public float getPopulacaoMedia()
-	{
-		float populacaoMedia = 0;
-		for (int i=0; i <= fila.capacidadeMax; i++) {
-			populacaoMedia += probabilidadesMarginais.get(i) * i;
-		}
-		return populacaoMedia;
-	}
-	
-	public float getTempoRespostaMedio()
-	{
-		return getPopulacaoMedia() / getVazaoMedia();
+		String results = "====================\n";
+		results += "RESULTADOS SIMULADOR:\n";
+		results += "Clientes perdidos: " + clientesPerdidos + "\n";
+		results += "Probabilidades marginais: " + probabilidadesMarginais + "\n";
+		results += "Vazao media: " + Util.getVazaoMedia(probabilidadesMarginais, fila) + "\n";
+		results += "Utilizacao media: " + Util.getUtilizacaoMedia(probabilidadesMarginais, fila) + "\n";
+		results += "Populacao media: " + Util.getPopulacaoMedia(probabilidadesMarginais, fila) + "\n";
+		results += "Tempo medio de resposta: " + Util.getTempoRespostaMedio(probabilidadesMarginais, fila) + "\n";
+		results += "====================\n";
+		return results;
 	}
 	
 }

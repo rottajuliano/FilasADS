@@ -27,18 +27,18 @@ public class Escalonador {
 	public void agendaChegada(float tempoEventoAnterior)
 	{
 		queue.add(new Evento(TipoEvento.CHEGADA, tempoEventoAnterior +
-				getFloatRange(fila.tempoMinChegada,fila.tempoMaxChegada)));
+				getFloatRange(fila.tempoChegadaMin,fila.tempoChegadaMax)));
 	}
 	
 	public void agendaSaida(float tempoEventoAnterior)
 	{
 		queue.add(new Evento(TipoEvento.SAIDA, tempoEventoAnterior + 
-				getFloatRange(fila.tempoMinAtendimento,fila.tempoMaxAtendimento)));
+				getFloatRange(fila.tempoAtendimentoMin,fila.tempoAtendimentoMax)));
 	}
 	
 	public float getFloatRange(float min, float max)
 	{
-		return (max - min) * rng.nextFloat() + min;
+		return ((max - min) * rng.nextFloat()) + min;
 	}
 
 }
