@@ -34,34 +34,36 @@ public class Util {
 	
 	public static float getVazaoMedia(ArrayList<Float> probabilidades, Fila fila)
 	{
-		float vazaoMedia = 0;
-		for (int i=0; i <= fila.capacidade; i++) {
-			vazaoMedia += probabilidades.get(i) * (Math.min(probabilidades.get(i), fila.numServidores) / fila.tempoAtendimentoAvg);
+		float res = 0;
+		for(Float p : probabilidades)
+		{
+			res += p * (Math.min(p, fila.numServidores)/fila.tempoAtendimentoAvg);
 		}
-		return vazaoMedia;
+		return res;
 	}
 	
 	public static float getUtilizacaoMedia(ArrayList<Float> probabilidades, Fila fila)
 	{
-		float utilizacaoMedia = 0;
-		for (int i=0; i <= fila.capacidade; i++) {
-			utilizacaoMedia += probabilidades.get(i) * (Math.min(probabilidades.get(i), fila.numServidores) / fila.numServidores);
+		float res = 0;
+		for(Float p : probabilidades)
+		{
+			res += p * (Math.min(p, fila.numServidores)/fila.numServidores);
 		}
-		return utilizacaoMedia;
+		return res;
 	}
 	
 	public static float getPopulacaoMedia(ArrayList<Float> probabilidades, Fila fila)
 	{
-		float populacaoMedia = 0;
-		for (int i=0; i <= fila.capacidade; i++) {
-			populacaoMedia += probabilidades.get(i) * i;
+		float res = 0;
+		for (int i=0; i < probabilidades.size(); i++) {
+			res += probabilidades.get(i) * i;
 		}
-		return populacaoMedia;
+		return res;
 	}
 	
 	public static float getTempoRespostaMedio(ArrayList<Float> probabilidades, Fila fila)
 	{
-		return getPopulacaoMedia(probabilidades, fila) / getVazaoMedia(probabilidades, fila);
+		return getPopulacaoMedia(probabilidades,fila)/getVazaoMedia(probabilidades,fila);
 	}
 
 }

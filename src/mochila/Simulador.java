@@ -112,10 +112,10 @@ public class Simulador {
 		results += "RESULTADOS SIMULADOR:\n";
 		results += "Clientes perdidos: " + clientesPerdidos + "\n";
 		results += "Probabilidades marginais: " + probabilidadesMarginais + "\n";
-		results += "Vazao media: " + Util.getVazaoMedia(probabilidadesMarginais, fila) + "\n";
-		results += "Utilizacao media: " + Util.getUtilizacaoMedia(probabilidadesMarginais, fila) + "\n";
-		results += "Populacao media: " + Util.getPopulacaoMedia(probabilidadesMarginais, fila) + "\n";
-		results += "Tempo medio de resposta: " + Util.getTempoRespostaMedio(probabilidadesMarginais, fila) + "\n";
+		results += "Vazao media (cli/u.t): " + Util.getVazaoMedia(probabilidadesMarginais, fila) + "\n";
+		results += "Utilizacao media (%): " + Util.getUtilizacaoMedia(probabilidadesMarginais, fila) + "\n";
+		results += "Populacao media (cli): " + Util.getPopulacaoMedia(probabilidadesMarginais, fila) + "\n";
+		results += "Tempo medio de resposta (u.t): " + Util.getTempoRespostaMedio(probabilidadesMarginais, fila) + "\n";
 		results += "====================\n";
 		return results;
 	}

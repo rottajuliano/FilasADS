@@ -12,10 +12,9 @@ public class NascimentoEMorte {
 		this.fila = fila;
 		
 		// O numero de estados no processo de nascimento e morte
-		// é igual ao numero de clientes no sistema, incluindo os em serviço
-		// Ou seja, o estado vazio + o numero de servidores + o tamanho da fila
-		int numStates = 1 + fila.numServidores + fila.capacidade;
-		System.out.println(numStates);
+		// é igual a capacidade da fila mais o estado vazio
+		// Ou seja, o estado vazio + o tamanho da fila
+		int numStates = 1 + fila.capacidade;
 		
 		// Iniciando o vetor de probabilidades
 		probabilidades = new ArrayList<Float>();
@@ -43,22 +42,18 @@ public class NascimentoEMorte {
 		{
 			probabilidades.set(i,probabilidades.get(i)/somaProbabilidades);
 		}
-		
-		System.out.println(fila.lambdaAvg + " * " + probabilidades.get(probabilidades.size()-1));
-		System.out.println("Clientes perdidos = " + fila.lambdaAvg * probabilidades.get(probabilidades.size()-1));
-		
 	}
 	
 	public String getResults()
 	{
 		String results = "====================\n";
 		results += "RESULTADOS NASCIMENTO E MORTE:\n";
-		results += "Clientes perdidos: " + fila.lambdaAvg * probabilidades.get(probabilidades.size()-1) + "por u.t\n";
+		results += "Clientes perdidos: " + fila.lambdaAvg * probabilidades.get(probabilidades.size()-1) + " por u.t\n";
 		results += "Probabilidades marginais: " + probabilidades + "\n";
-		results += "Vazao media: " + Util.getVazaoMedia(probabilidades, fila) + "\n";
-		results += "Utilizacao media: " + Util.getUtilizacaoMedia(probabilidades, fila) + "\n";
-		results += "Populacao media: " + Util.getPopulacaoMedia(probabilidades, fila) + "\n";
-		results += "Tempo medio de resposta: " + Util.getTempoRespostaMedio(probabilidades, fila) + "\n";
+		results += "Vazao media (cli/u.t): " + Util.getVazaoMedia(probabilidades, fila) + "\n";
+		results += "Utilizacao media (%): " + Util.getUtilizacaoMedia(probabilidades, fila) + "\n";
+		results += "Populacao media (cli): " + Util.getPopulacaoMedia(probabilidades, fila) + " \n";
+		results += "Tempo medio de resposta (u.t): " + Util.getTempoRespostaMedio(probabilidades, fila) + "\n";
 		results += "====================\n";
 		return results;
 	}

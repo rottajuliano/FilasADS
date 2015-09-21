@@ -3,11 +3,11 @@ package mochila;
 public class Main
 {	
 	public static float tempoChegadaMin = 2;
-	public static float tempoChegadaMax = 3;
+	public static float tempoChegadaMax = 2;
 	public static float tempoChegadaAvg = (tempoChegadaMin + tempoChegadaMax)/2.0f;
 	
-	public static float tempoAtendimentoMin = 3;
-	public static float tempoAtendimentoMax = 5;
+	public static float tempoAtendimentoMin = 2;
+	public static float tempoAtendimentoMax = 2;
 	public static float tempoAtendimentoAvg = (tempoAtendimentoMin + tempoAtendimentoMax)/2.0f;
 	
 	public static float lambdaMin = 1/tempoChegadaMin;
@@ -20,7 +20,7 @@ public class Main
 	
 	
 	public static int capacidade = 5;
-	public static int numServidores = 2;
+	public static int numServidores = 1;
 	
 	public static float tempoSimulacao = 10000;
 	public static long seed = 1000;

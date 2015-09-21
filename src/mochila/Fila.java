@@ -55,24 +55,24 @@ public class Fila
 	{
 		String results = "====================\n";
 		results += "PARAMETROS DA FILA:\n";
-		results += "Lambda M�nimo: " + lambdaMin + "\n";
-		results += "Lambda M�ximo: " + lambdaMax + "\n";
-		results += "Lambda M�dio: " + lambdaAvg + "\n\n";
+		results += "Lambda Minimo: " + lambdaMin + "\n";
+		results += "Lambda Maximo: " + lambdaMax + "\n";
+		results += "Lambda Medio: " + lambdaAvg + "\n\n";
 		
-		results += "Mu M�nimo: " + muMin + "\n";
-		results += "Mu M�ximo: " + muMax + "\n";
-		results += "Mu M�dio: " + muAvg + "\n\n";
+		results += "Mu Minimo: " + muMin + "\n";
+		results += "Mu Maximo: " + muMax + "\n";
+		results += "Mu Medio: " + muAvg + "\n\n";
 		
-		results += "Tempo de Chegada M�nimo: " + tempoChegadaMin + "\n";
-		results += "Tempo de Chegada M�ximo: " + tempoChegadaMax + "\n";
-		results += "Tempo de Chegada M�dio: " + tempoChegadaAvg + "\n\n";
+		results += "Tempo de Chegada Minimo: " + tempoChegadaMin + "\n";
+		results += "Tempo de Chegada Maximo: " + tempoChegadaMax + "\n";
+		results += "Tempo de Chegada Medio: " + tempoChegadaAvg + "\n\n";
 		
-		results += "Tempo de Atendimento M�nimo: " + tempoAtendimentoMin + "\n";
-		results += "Tempo de Atendimento M�ximo: " + tempoAtendimentoMax + "\n";
-		results += "Tempo de Atendimento M�dio: " + tempoAtendimentoAvg + "\n\n";
+		results += "Tempo de Atendimento Minimo: " + tempoAtendimentoMin + "\n";
+		results += "Tempo de Atendimento Maximo: " + tempoAtendimentoMax + "\n";
+		results += "Tempo de Atendimento Medio: " + tempoAtendimentoAvg + "\n\n";
 		
 		results += "Capacidade: " + capacidade + "\n";
-		results += "N�mero de servidores: " + numServidores + "\n";
+		results += "Numero de servidores: " + numServidores + "\n";
 		results += "====================\n";
 		return results;
 	}

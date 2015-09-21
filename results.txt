@@ -1,42 +1,42 @@
 ====================
 PARAMETROS DA FILA:
-Lambda M�nimo: 0.016666668
-Lambda M�ximo: 0.016666668
-Lambda M�dio: 0.016666668
+Lambda Minimo: 0.5
+Lambda Maximo: 0.5
+Lambda Medio: 0.5
 
-Mu M�nimo: 0.083333336
-Mu M�ximo: 0.083333336
-Mu M�dio: 0.083333336
+Mu Minimo: 0.5
+Mu Maximo: 0.5
+Mu Medio: 0.5
 
-Tempo de Chegada M�nimo: 59.999996
-Tempo de Chegada M�ximo: 59.999996
-Tempo de Chegada M�dio: 59.999996
+Tempo de Chegada Minimo: 2.0
+Tempo de Chegada Maximo: 2.0
+Tempo de Chegada Medio: 2.0
 
-Tempo de Atendimento M�nimo: 12.0
-Tempo de Atendimento M�ximo: 12.0
-Tempo de Atendimento M�dio: 12.0
+Tempo de Atendimento Minimo: 2.0
+Tempo de Atendimento Maximo: 2.0
+Tempo de Atendimento Medio: 2.0
 
-Capacidade: 1
-N�mero de servidores: 1
+Capacidade: 5
+Numero de servidores: 1
 ====================
 
 ====================
 RESULTADOS SIMULADOR:
 Clientes perdidos: 0
-Probabilidades marginais: [0.81176466, 0.18823533]
-Vazao media: 0.0578662
-Utilizacao media: 0.69439435
-Populacao media: 0.18823533
-Tempo medio de resposta: 3.252941
+Probabilidades marginais: [2.0E-4, 0.9998, 0.0, 0.0, 0.0, 0.0]
+Vazao media (cli/u.t): 0.4998001
+Utilizacao media (%): 0.9996002
+Populacao media (cli): 0.9998
+Tempo medio de resposta (u.t): 2.0003998
 ====================
 
 ====================
 RESULTADOS NASCIMENTO E MORTE:
-Clientes perdidos: 5.376345E-4
-Probabilidades marginais: [0.8064516, 0.16129032, 0.032258067]
-Vazao media: 0.0563649
-Utilizacao media: 0.6763788
-Populacao media: 0.16129032
-Tempo medio de resposta: 2.8615382
+Clientes perdidos: 0.083333336 por u.t
+Probabilidades marginais: [0.16666667, 0.16666667, 0.16666667, 0.16666667, 0.16666667, 0.16666667]
+Vazao media (cli/u.t): 0.083333336
+Utilizacao media (%): 0.16666667
+Populacao media (cli): 2.5 
+Tempo medio de resposta (u.t): 30.0
 ====================
 
